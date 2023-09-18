@@ -6,10 +6,12 @@ class AppSize{
   static double? width;
   static double? screenHeight;
   static double? screenWidth;
+  static Orientation? orientation;
   init(BuildContext context){
     _queryData=MediaQuery.of(context);
     height=_queryData!.size.height;
     width=_queryData!.size.width;
+    orientation=_queryData!.orientation;
     screenHeight=height!/100;
     screenWidth=width!/100;
   }

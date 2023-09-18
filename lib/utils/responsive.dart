@@ -8,7 +8,6 @@ class Responsive extends StatelessWidget {
   final Widget? desktop;
   @override
   Widget build(BuildContext context) {
-    final size=MediaQuery.of(context).orientation;
     return LayoutBuilder(builder: (context,constraints){
       if(constraints.maxWidth >= 480){
         return mobile!;
