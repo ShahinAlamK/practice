@@ -50,7 +50,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text("See more",style:AppFont.regular.copyWith(fontSize: getW(14),color:AppColor.font),),
                 ],
               ),
-
+              SizedBox(height: getH(10)),
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(10, (index) => const Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: CourseCard(),
+                  ),),
+                ),
+              ),
+              SizedBox(height: getH(20)),
             ],
           ),
         )
@@ -78,6 +89,80 @@ class _HomeScreenState extends State<HomeScreen> {
         RoundIcon(icon: SvgPicture.asset(AppIcon.notification,height:getH(20),width:getW(20)), press: () { },),
         SizedBox(width: getW(10)),
       ],
+    );
+  }
+}
+
+class CourseCard extends StatelessWidget {
+  const CourseCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(10)
+      ),
+      height: getH(270),
+      width: getW(300),
+      child: Column(
+        children: [
+          ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10)
+              ),
+              child: Image.network("https://cdn.ostad.app/course/photo/2023-05-27T09-42-50.178Z-Website%20Image%20(27).jpg",fit: BoxFit.cover,)),
+
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: getW(5),vertical: getH(5)),
+                  child: Container(
+                      decoration:BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(2)
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: getW(5),vertical: getH(5)),
+                      child: Text("New Batch Will Start",style: AppFont.regular.copyWith(fontSize:getW(10)),)),
+                ),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: getW(5),vertical: getH(5)),
+                  child: Text("App Development with Flutter",maxLines: 2,
+                    style: AppFont.medium.copyWith(fontSize:getW(18)),),
+                ),
+
+                const Spacer(),
+                Container(
+                  height: getH(40),
+                    width: double.infinity,
+                    decoration:BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: const BorderRadius.only(
+                          bottomRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10),
+                        )
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text("ট10000",style: AppFont.regular.copyWith(fontSize:getW(14),decoration: TextDecoration.lineThrough),),
+                        Text("ট5000",style: AppFont.regular.copyWith(fontSize:getW(14)),),
+                      ],
+                    )),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
