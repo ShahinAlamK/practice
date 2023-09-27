@@ -43,12 +43,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("Todo Application"),
       ),
       
-      floatingActionButton: FloatingActionButton(onPressed: (){
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
         todoList.clear();
         setState(() {
 
         });
-      },child:const Icon(Icons.clear),),
+      },
+        child:const Icon(Icons.clear),),
 
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: getW(20)),
@@ -68,7 +70,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         controller:_controller,
                         decoration: InputDecoration(
                           border: InputBorder.none,
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(getW(5)),
+                              borderSide: const BorderSide(color: Colors.transparent)
+                          ),
                           filled: true,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(getW(5)),
+                            borderSide: const BorderSide(color: Colors.transparent)
+                          ),
+
                           fillColor: Colors.grey.shade100,
                           contentPadding: EdgeInsets.symmetric(horizontal: getW(15),vertical:getH(16)),
                           hintText: "Something write...",
@@ -127,28 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class DeleteBox extends StatelessWidget {
-  const DeleteBox({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: const Icon(Icons.info_outline),
-      content:const Text("Are you sure todo confirm delete"),
-      actions: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(elevation: 0),
-            onPressed: (){},
-            child: const Text("Cancel")),
-
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(elevation: 0,backgroundColor: Colors.redAccent),
-            onPressed: (){},
-            child: const Text("Delete"))
-      ],
-    );
-  }
-}
 
 
 
